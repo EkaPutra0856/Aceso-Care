@@ -8,27 +8,6 @@ const modalCloseOverlay = document.querySelector('[data-modal-overlay]');
 // modal function
 const modalCloseFunc = function () { modal.classList.add('closed') }
 
-// modal eventListener
-modalCloseOverlay.addEventListener('click', modalCloseFunc);
-modalCloseBtn.addEventListener('click', modalCloseFunc);
-
-
-
-
-
-// notification toast variables
-const notificationToast = document.querySelector('[data-toast]');
-const toastCloseBtn = document.querySelector('[data-toast-close]');
-
-// notification toast eventListener
-toastCloseBtn.addEventListener('click', function () {
-  notificationToast.classList.add('closed');
-});
-
-
-
-
-
 // mobile menu variables
 const mobileMenuOpenBtn = document.querySelectorAll('[data-mobile-menu-open-btn]');
 const mobileMenu = document.querySelectorAll('[data-mobile-menu]');
@@ -86,3 +65,36 @@ for (let i = 0; i < accordionBtn.length; i++) {
   });
 
 }
+
+var currentIndex = 0;
+var sliderItems = document.querySelectorAll(".slider-item");
+var sliderContainer = document.querySelector(".slider-container");
+
+function nextSlide() {
+  sliderItems[currentIndex].classList.remove("active");
+  currentIndex = (currentIndex + 1) % sliderItems.length;
+  sliderItems[currentIndex].classList.add("active");
+
+  // Ambil nilai indeks dari data-index untuk menampilkan di console
+  var activeIndex = sliderItems[currentIndex].getAttribute("data-index");
+  console.log("Aktif:", activeIndex);
+
+  // Hitung lebar container dan item untuk menggeser scrollbar
+  var containerWidth = sliderContainer.offsetWidth;
+  var itemWidth = sliderItems[currentIndex].offsetWidth;
+  var scrollLeft = currentIndex * itemWidth;
+
+  // Geser scrollbar ke posisi yang sesuai
+  if (scrollLeft + containerWidth > sliderContainer.scrollWidth) {
+    sliderContainer.scrollLeft = sliderContainer.scrollWidth - containerWidth;
+  } else {
+    sliderContainer.scrollLeft = scrollLeft;
+  }
+}
+
+function startSlider() {
+  setInterval(nextSlide, 2000);
+}
+
+startSlider();
+

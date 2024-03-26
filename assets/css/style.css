@@ -722,6 +722,14 @@ body::-webkit-scrollbar-thumb:hover { background: hsl(0, 0%, 70%); }
 
 .banner-btn:hover { background: var(--eerie-black); }
 
+/* CSS untuk menyembunyikan item-item dalam slider kecuali yang aktif */
+.slider-item {
+  display: none;
+}
+
+.slider-item.active {
+  display: block;
+}
 
 
 

@@ -195,15 +195,23 @@ document.addEventListener("DOMContentLoaded", function() {
             // Hapus kelas "hidden" pada containerCard yang sesuai dengan nomor daftar
             containerCard.classList.remove('hidden');
 
-            // Dapatkan posisi offset dari containerCard yang sesuai
-            let containerCardOffset = containerCard.offsetTop;
+                      // Dapatkan posisi offset dari containerCard yang sesuai
+                      let containerCardOffset = containerCard.offsetTop;
 
-            // Atur animasi scroll ke posisi containerCard yang sesuai
-            window.scrollTo({
-                top: containerCardOffset,
-                behavior: "smooth"
-            });
-
+                      // Jika ini adalah slide ke-2, scroll ke bawah sejauh 500px saja
+                      if (listNumber === 2) {
+                          window.scrollBy({
+                              top: 610,
+                              behavior: "smooth"
+                          });
+                      } else {
+                          // Jika bukan slide ke-2, scroll ke posisi awal dari containerCard yang sesuai
+                          window.scrollTo({
+                              top: containerCardOffset,
+                              behavior: "smooth"
+                          });
+                      }
+          
             // Tampilkan nomor daftar yang dipilih di konsol
             console.log("Daftar yang dipilih:", listNumber);
 
